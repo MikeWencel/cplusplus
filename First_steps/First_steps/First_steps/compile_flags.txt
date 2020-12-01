@@ -1,0 +1,10 @@
+-IC:\Program
+-IF:\Programowanie\cplusplus\First_steps\First_steps\First_steps
+-I"C:\Program Files\mingw-w64\mingw64\lib\gcc\x86_64-w64-mingw32\8.1.0\include\c++"
+-I"C:\Program Files\mingw-w64\mingw64\lib\gcc\x86_64-w64-mingw32\8.1.0\include\c++\x86_64-w64-mingw32"
+-I"C:\Program Files\mingw-w64\mingw64\lib\gcc\x86_64-w64-mingw32\8.1.0\include\c++\backward"
+-I"C:\Program Files\mingw-w64\mingw64\lib\gcc\x86_64-w64-mingw32\8.1.0\include"
+-I"C:\Program Files\mingw-w64\mingw64\lib\gcc\x86_64-w64-mingw32\8.1.0\include-fixed"
+-I"C:\Program Files\mingw-w64\mingw64\x86_64-w64-mingw32\include"
+-target
+i686-pc-windows-gnu
