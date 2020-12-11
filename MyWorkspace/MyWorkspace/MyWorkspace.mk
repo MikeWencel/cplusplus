@@ -5,18 +5,18 @@
 ## Debug
 ProjectName            :=MyWorkspace
 ConfigurationName      :=Debug
-WorkspacePath          :=F:/Programowanie/cplusplus/MyWorkspace
-ProjectPath            :=F:/Programowanie/cplusplus/MyWorkspace/MyWorkspace
+WorkspacePath          :=/home/mikewencel/Programming/cplusplus/MyWorkspace
+ProjectPath            :=/home/mikewencel/Programming/cplusplus/MyWorkspace/MyWorkspace
 IntermediateDirectory  :=$(ConfigurationName)
 OutDir                 := $(IntermediateDirectory)
 CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
-User                   :=Michael
-Date                   :=10/12/2020
-CodeLitePath           :="C:/Program Files/CodeLite"
-LinkerName             :="C:/Program Files/mingw-w64/mingw64/bin/g++.exe"
-SharedObjectLinkerName :="C:/Program Files/mingw-w64/mingw64/bin/g++.exe" -shared -fPIC
+User                   :=MikeWencel
+Date                   :=12/12/20
+CodeLitePath           :=/home/mikewencel/.codelite
+LinkerName             :=/usr/bin/g++
+SharedObjectLinkerName :=/usr/bin/g++ -shared -fPIC
 ObjectSuffix           :=.o
 DependSuffix           :=.o.d
 PreprocessSuffix       :=.i
@@ -34,9 +34,7 @@ ArchiveOutputSwitch    :=
 PreprocessOnlySwitch   :=-E
 ObjectsFileList        :="MyWorkspace.txt"
 PCHCompileFlags        :=
-MakeDirCommand         :=makedir
-RcCmpOptions           := 
-RcCompilerName         :="C:/Program Files/mingw-w64/mingw64/bin/windres.exe"
+MakeDirCommand         :=mkdir -p
 LinkOptions            :=  -static
 IncludePath            :=  $(IncludeSwitch). $(IncludeSwitch). 
 IncludePCH             := 
@@ -49,19 +47,19 @@ LibPath                := $(LibraryPathSwitch).
 ## Common variables
 ## AR, CXX, CC, AS, CXXFLAGS and CFLAGS can be overriden using an environment variables
 ##
-AR       := "C:/Program Files/mingw-w64/mingw64/bin/ar.exe" rcu
-CXX      := "C:/Program Files/mingw-w64/mingw64/bin/g++.exe"
-CC       := "C:/Program Files/mingw-w64/mingw64/bin/gcc.exe"
+AR       := /usr/bin/ar rcu
+CXX      := /usr/bin/g++
+CC       := /usr/bin/gcc
 CXXFLAGS :=  -g -O0 -std=c++17 -Wall $(Preprocessors)
 CFLAGS   :=  -g -O0 -Wall $(Preprocessors)
 ASFLAGS  := 
-AS       := "C:/Program Files/mingw-w64/mingw64/bin/as.exe"
+AS       := /usr/bin/as
 
 
 ##
 ## User defined environment variables
 ##
-CodeLiteDir:=C:\Program Files\CodeLite
+CodeLiteDir:=/usr/share/codelite
 Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) 
 
 
@@ -81,11 +79,11 @@ $(OutputFile): $(IntermediateDirectory)/.d $(Objects)
 	$(LinkerName) $(OutputSwitch)$(OutputFile) @$(ObjectsFileList) $(LibPath) $(Libs) $(LinkOptions)
 
 MakeIntermediateDirs:
-	@$(MakeDirCommand) "$(ConfigurationName)"
+	@test -d $(ConfigurationName) || $(MakeDirCommand) $(ConfigurationName)
 
 
 $(IntermediateDirectory)/.d:
-	@$(MakeDirCommand) "$(ConfigurationName)"
+	@test -d $(ConfigurationName) || $(MakeDirCommand) $(ConfigurationName)
 
 PreBuild:
 
@@ -93,9 +91,11 @@ PreBuild:
 ##
 ## Objects
 ##
-$(IntermediateDirectory)/main.cpp$(ObjectSuffix): main.cpp
+$(IntermediateDirectory)/main.cpp$(ObjectSuffix): main.cpp $(IntermediateDirectory)/main.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/mikewencel/Programming/cplusplus/MyWorkspace/MyWorkspace/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/main.cpp$(DependSuffix): main.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/main.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/main.cpp$(DependSuffix) -MM main.cpp
-	$(CXX) $(IncludePCH) $(SourceSwitch) "F:/Programowanie/cplusplus/MyWorkspace/MyWorkspace/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
+
 $(IntermediateDirectory)/main.cpp$(PreprocessSuffix): main.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/main.cpp$(PreprocessSuffix) main.cpp
 
