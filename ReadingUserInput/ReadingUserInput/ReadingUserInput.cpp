@@ -2,6 +2,7 @@
 //
 
 #include <iostream>
+#include <string>
 //using namespace will helps to write main code, for example without "std::"
 using namespace std;
 
@@ -22,10 +23,13 @@ int main()
     int second;
     cin >> second;
     int result = first + second;
+    string str = to_string(result);
+    string res = "Your result is " + str + " it was easy\n";
+    cout << res;
 
-    cout << "Something\n";
-    cout << "Your result is ";
-    cout << result;
+    //String length;
+
+    cout << res.length();
 
     return 0;
 }
